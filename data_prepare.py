@@ -19,41 +19,37 @@ def move_image_to_processed_dir(alpha_list, img_dir, desc):
 
 
 def prepare_data():
-    # background_dir = "data/unzip/background"
-    # evaluation_dir = "data/unzip/evaluation"
-    # processed_dir = "data/processed"
-    #
-    # random.seed(5)
-    #
-    # if not os.path.exists(processed_dir):
-    #     os.makedirs(processed_dir)
-    #
-    # if any([True for _ in os.scandir(processed_dir)]):
-    #     return
-    #
-    # # Move 10 of evaluation image for getting more train set.
-    # if len(glob(evaluation_dir + '/*')) >= 20:
-    #     for d in random.sample(glob(evaluation_dir + '/*'), 10):
-    #         os.rename(d, os.path.join(background_dir, os.path.basename(d)))
-    #
-    # back_alpha = [x for x in glob(background_dir + '/*')]
-    # back_alpha.sort()
-    #
-    # # Split background data into train, validation data and make test data
-    # train_alpha = list(np.random.choice(back_alpha, size=30, replace=False))
-    # train_alpha = [str(x) for x in train_alpha]
-    # val_alpha = [x for x in back_alpha if x not in train_alpha]
-    # test_alpha = [x for x in glob(evaluation_dir + '/*')]
-    # test_alpha.sort()
-    #
-    # train_dir = os.path.join(processed_dir, 'train')
-    # val_dir = os.path.join(processed_dir, 'val')
-    # test_dir = os.path.join(processed_dir, 'test')
-    #
-    # move_image_to_processed_dir(train_alpha, train_dir, 'train')
-    # move_image_to_processed_dir(val_alpha, val_dir, 'val')
-    # move_image_to_processed_dir(test_alpha, test_dir, 'test')
+    background_dir = "data/unzip/background"
+    evaluation_dir = "data/unzip/evaluation"
+    processed_dir = "data/processed"
 
-    train_dir = os.path.join('/home/server3/jhpark/split_data_copy/test/')
-    val_dir = os.path.join('/home/server3/jhpark/split_data_copy/train/')
-    test_dir = os.path.join('/home/server3/jhpark/split_data_copy/')
+    random.seed(5)
+
+    if not os.path.exists(processed_dir):
+        os.makedirs(processed_dir)
+
+    if any([True for _ in os.scandir(processed_dir)]):
+        return
+
+    # Move 10 of evaluation image for getting more train set.
+    if len(glob(evaluation_dir + '/*')) >= 20:
+        for d in random.sample(glob(evaluation_dir + '/*'), 10):
+            os.rename(d, os.path.join(background_dir, os.path.basename(d)))
+
+    back_alpha = [x for x in glob(background_dir + '/*')]
+    back_alpha.sort()
+
+    # Split background data into train, validation data and make test data
+    train_alpha = list(np.random.choice(back_alpha, size=30, replace=False))
+    train_alpha = [str(x) for x in train_alpha]
+    val_alpha = [x for x in back_alpha if x not in train_alpha]
+    test_alpha = [x for x in glob(evaluation_dir + '/*')]
+    test_alpha.sort()
+
+    train_dir = os.path.join(processed_dir, 'train')
+    val_dir = os.path.join(processed_dir, 'val')
+    test_dir = os.path.join(processed_dir, 'test')
+
+    move_image_to_processed_dir(train_alpha, train_dir, 'train')
+    move_image_to_processed_dir(val_alpha, val_dir, 'val')
+    move_image_to_processed_dir(test_alpha, test_dir, 'test')
