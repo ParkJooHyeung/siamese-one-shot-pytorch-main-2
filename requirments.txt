@@ -1,0 +1,14 @@
+tqdm==4.51.0
+numpy==1.19.3
+torch==1.7.1
+torchvision==0.4.1
+#Unknown library
+#pkg_resources
+#augmentor
+#=
+#data
+#prettytable
+#pil
+#wget
+#fire
+#Made by rhcsky
